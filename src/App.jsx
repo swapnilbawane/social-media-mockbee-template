@@ -3,6 +3,17 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+if (import.meta.env.DEV) {
+	window.onerror = (event, source, lineno, colno, err) => {
+		const ErrorOverlay = customElements.get("vite-error-overlay");
+		if (!ErrorOverlay) {
+			return;
+		}
+		const overlay = new ErrorOverlay(err);
+		document.body.appendChild(overlay);
+	};
+}
+
 function App() {
 	const [count, setCount] = useState(0);
 
